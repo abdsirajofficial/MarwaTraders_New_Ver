@@ -12,64 +12,63 @@ import numWords from "num-words";
 
 class ComponentToPrint extends React.Component {
   render() {
-    const { selectedItems, state, invoice} = this.props;
+    const { selectedItems, state, invoice } = this.props;
 
     function numberToWords(num) {
       return numWords(num);
     }
     return (
-      <div className=" bg-white w-full h-min p-5 rounded-lg mt-5 ">
-        <div className=" flex justify-center items-center space-x-5 border-2 p-2">
-          <img src={logoImage} alt="" className=" w-36" />
-          <div className=" fles text-center pl-20">
-            <p className=" font-bold text-[20px] tracking-wider">
-              MARWA TRADERS
+      <div className="bg-white w-full h-min p-5 rounded-lg mt-5 border border-gray-300">
+        <div className="flex justify-center space-x-10 items-center border-b border-gray-300 pb-3 mb-3">
+          <img src={logoImage} alt="Logo" className="w-24" />
+          <div className="text-center">
+            <p className="font-bold text-lg tracking-wider">MARWA TRADERS</p>
+            <p className="tracking-widest text-sm">
+              No.44/A, MAMBALAPATTU ROAD,
             </p>
-            <p className="   tracking-widest">No.44/A, MAMBALAPATTU ROAD,</p>
-            <p className="   tracking-widest">VILLUPURAM - 605602</p>
-            <p className="   tracking-widest">PHONE : 9043732149,6381364796</p>
-            <p className=" tracking-widest">GSTIN: 33OLDPS1329N1ZJ</p>
+            <p className="tracking-widest text-sm">VILLUPURAM - 605602</p>
+            <p className="tracking-widest text-sm">
+              PHONE: 9043732149, 6381364796
+            </p>
+            <p className="tracking-widest text-sm">GSTIN: 33OLDPS1329N1ZJ</p>
           </div>
         </div>
-        <div className=" flex justify-between border-b-2">
-          <div className=" w-1/2 border-l-2 p-2 text-[14px]">
-            <div className=" flex space-x-5">
-              <p className=" font-bold ">To :-</p>
-              <p>{state.name}</p>
-            </div>
-            <div className=" pl-12  ">
-              <p>{state.area}</p>
-            </div>
+
+        <div className="flex justify-between border-b border-gray-300 pb-2 mb-2">
+          <div className="w-1/2 text-xs">
+            <p className="font-bold">To:</p>
+            <p>{state.name}</p>
+            <p>{state.area}</p>
           </div>
-          <div className=" w-1/2 border-l-2 text-[14px]">
-            <div className=" flex space-x-10 border-b-2 border-r-2 p-2 font-medium">
-              <p>TAX INVOICE</p>
-              <p>CASH BILL</p>
+          <div className="w-1/2 text-xs border-l border-gray-300 pl-3">
+            <div className="flex justify-between border-b border-gray-300 pb-2">
+              <p className="font-medium">TAX INVOICE</p>
+              {/* <p className="font-medium">CASH BILL</p> */}
             </div>
-            <div className=" grid grid-cols-2 p-2 border-r-2">
-              <p>INVOICE NO : </p>
+            <div className="grid grid-cols-2 pt-2">
+              <p>INVOICE NO:</p>
               <p>{invoice}</p>
-              <p>PAYMENT MODE : </p>
+              <p>PAYMENT MODE:</p>
               <p>{state.paymentMode}</p>
-              <p>DATE :</p>
-              <p> {state.date}</p>
+              <p>DATE:</p>
+              <p>{state.date}</p>
             </div>
           </div>
         </div>
-        <table className="w-full text-center border-x-2 text-[14px]">
-          <thead>
-            <tr className=" border-b-2">
-              <th className="p-2 ">S.No</th>
-              <th className="p-2 border-x-2">Description</th>
-              <th className="p-2 ">Quantity</th>
-              <th className="p-2 border-x-2">Rate</th>
-              <th className="p-2">Disc</th>
-              <th className="p-2 border-l-2">Total</th>
+
+        <table className="w-full text-center text-xs border border-gray-300">
+          <thead className="bg-gray-200">
+            <tr className="border-b border-gray-300">
+              <th className="p-1">S.No</th>
+              <th className="p-1 border-x border-gray-300">Description</th>
+              <th className="p-1">Quantity</th>
+              <th className="p-1 border-x border-gray-300">Rate</th>
+              <th className="p-1">Disc</th>
+              <th className="p-1 border-l border-gray-300">Total</th>
             </tr>
           </thead>
           <tbody>
             {selectedItems.map((item, index) => {
-              // Calculate the total for the current item
               const total = (
                 item.quantity *
                 item.mrp *
@@ -78,24 +77,23 @@ class ComponentToPrint extends React.Component {
 
               return (
                 <tr key={index}>
-                  <td className="p-2">{index + 1}</td>
-                  <td className="p-2 border-x-2 gap-2 text-start">
-                    {item.productName}
-                    {item.category}
+                  <td className="p-1">{index + 1}</td>
+                  <td className="p-1 border-x border-gray-300 text-start">
+                    {item.productName} ({item.category})
                   </td>
-                  <td className="p-2">{item.quantity}</td>
-                  <td className="p-2 border-x-2">{item.mrp}</td>
-                  <td className="p-2">{item.discount}%</td>
-                  <td className="p-2 border-x-2">{total}</td>
+                  <td className="p-1">{item.quantity}</td>
+                  <td className="p-1 border-x border-gray-300">{item.mrp}</td>
+                  <td className="p-1">{item.discount}%</td>
+                  <td className="p-1 border-x border-gray-300">{total}</td>
                 </tr>
               );
             })}
 
-            <tr className=" border-y-2">
+            <tr className="border-t border-gray-300">
               <td
-                className="p-2 text-start border-r-2 border-b-2 capitalize text-[14px]"
+                className="p-1 text-start border-r border-gray-300"
                 colSpan="3"
-                rowSpan="4"
+                rowSpan="3"
               >
                 {numberToWords(
                   state.spl > 0
@@ -157,21 +155,23 @@ class ComponentToPrint extends React.Component {
                             (state.gst / 100)
                       )
                 )}
-                <p className=" font-medium underline">Our Bank Details :</p>
-                <div className=" flex space-x-3 ">
-                  <p className=" font-medium">Bank Name :</p>
-                  <p>Axis Bank </p>
-                  <p className=" font-medium">A/c No :</p>
-                  <p>923020011076412 </p>
-                  <p className=" font-medium">IFSC Code :</p>
-                  <p>UTIB0000467 </p>
+                <p className="font-medium underline mt-2">Our Bank Details:</p>
+                <div className="flex space-x-3 mt-1">
+                  <p className="font-medium">Bank Name:</p>
+                  <p>Axis Bank</p>
+                  <p className="font-medium">A/c No:</p>
+                  <p>923020011076412</p>
+                  <p className="font-medium">IFSC Code:</p>
+                  <p>UTIB0000467</p>
                 </div>
               </td>
-              <td className="p-1 text-right border-r-2" colSpan="2">
+              <td
+                className="p-1 text-right border-r border-gray-300"
+                colSpan="2"
+              >
                 Amount
               </td>
               <td className="p-1 text-center pr-8 font-medium">
-                {/* Calculate and display the grand total of all items */}
                 {selectedItems
                   .map((item) => {
                     const total =
@@ -183,11 +183,14 @@ class ComponentToPrint extends React.Component {
               </td>
             </tr>
 
-            <tr className=" border-b-2">
-              <td className="p-1 text-right border-r-2" colSpan="2">
+            <tr>
+              <td
+                className="p-1 text-right border-r border-gray-300"
+                colSpan="2"
+              >
                 Gst {state.gst}%
               </td>
-              <td className="p-1 text-center pr-8 " colSpan="2">
+              <td className="p-1 text-center pr-8" colSpan="2">
                 {(
                   selectedItems.reduce((acc, item) => {
                     return (
@@ -198,9 +201,13 @@ class ComponentToPrint extends React.Component {
                 ).toFixed(2)}
               </td>
             </tr>
+
             {state.spl > 0 && (
-              <tr className="border-b-2">
-                <td className="p-1 text-right border-r-2" colSpan="2">
+              <tr>
+                <td
+                  className="p-1 text-right border-r border-gray-300"
+                  colSpan="2"
+                >
                   Special dis(-) {state.spl}%
                 </td>
                 <td className="p-1 text-center pr-8" colSpan="2">
@@ -217,11 +224,14 @@ class ComponentToPrint extends React.Component {
               </tr>
             )}
 
-            <tr className="">
-              <td className="p-1 text-right border-r-2" colSpan="2">
+            <tr className="border-t border-gray-300">
+              <td
+                className="p-1 text-right border-r border-gray-300"
+                colSpan="2"
+              >
                 Total
               </td>
-              <td className="p-1 text-center pr-8 font-medium" colSpan="">
+              <td className="p-1 text-center pr-8 font-medium">
                 {state.spl > 0
                   ? (
                       parseFloat(
@@ -272,19 +282,15 @@ class ComponentToPrint extends React.Component {
                     ).toFixed(2)}
               </td>
             </tr>
-            {state.spl <= 0 && (
-              <tr>
-                <td colSpan="3"></td>
-              </tr>
-            )}
-            <tr className=" border-b-2 ">
+
+            <tr className="border-t border-gray-300">
               <td
-                className=" text-start border-x-2 p-2"
+                className="p-2 text-start border-r border-gray-300"
                 colSpan="3"
-                rowSpan="3"
+                rowSpan="2"
               >
-                <p className=" font-medium underline"> E.& O.E </p>
-                <div className=" text-[13px]">
+                <p className="font-medium underline">E.& O.E</p>
+                <div className="text-xs">
                   <p>
                     Certified the all particular given above are true and
                     correct.
@@ -296,15 +302,13 @@ class ComponentToPrint extends React.Component {
                   </p>
                 </div>
               </td>
-            </tr>
-            <tr>
               <td
-                className=" border-x-2 border-b-2  font-medium text-end"
+                className="text-right border-r border-gray-300 p-2 font-medium"
                 colSpan="2"
               >
                 GRAND TOTAL
               </td>
-              <td className="text-center pr-8 border-b-2 font-medium">
+              <td className="text-center pr-8 p-2 font-medium">
                 {state.spl > 0
                   ? Math.round(
                       parseFloat(
@@ -359,13 +363,13 @@ class ComponentToPrint extends React.Component {
                     )}
               </td>
             </tr>
-            <tr className=" border-b-2">
+            <tr className="border-t border-gray-300">
               <td
-                className="p-3 text-start border-r-2 space-y-10 text-[13px] font-medium"
+                className="p-3 text-start border-r border-gray-300 text-xs font-medium"
                 colSpan="3"
               >
                 <p>for MARWA TRADERS</p>
-                <p className=" text-end">Authorised Signatory</p>
+                <p className="text-end mt-10">Authorised Signatory</p>
               </td>
             </tr>
           </tbody>
@@ -382,7 +386,7 @@ export const SaveBillForm = ({
   setState,
   setselectedItems,
   invoice,
-  setinvoice
+  setinvoice,
 }) => {
   const componentRef = useRef();
 
@@ -397,7 +401,7 @@ export const SaveBillForm = ({
     });
     setselectedItems([]);
     setViewMode("billing");
-    setinvoice()
+    setinvoice();
   };
 
   return (

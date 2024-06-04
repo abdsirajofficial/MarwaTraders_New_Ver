@@ -46,14 +46,23 @@ export const HomePage = () => {
           <div className=" text-white">
             <img src={logoImage} alt="" className="w-24"/>
           </div>
+          {/* <NavLink
+            to={"/cashbill"}
+            className=" acitive w-full mt-10 flex justify-center items-center lg:space-x-5 text-center py-3 lg:px-10 cursor-pointer text-[#ebedf2] font-medium"
+          >
+            <h1 className="text-[14px] flex gap-3 text-center">
+              <FileText />
+              Cash Bill
+            </h1>
+          </NavLink> */}
           <NavLink
             to={"/billingHome"}
             className=" acitive w-full mt-10 flex justify-center  items-center lg:space-x-5 text-center py-3 lg:px-10 cursor-pointer text-[#ebedf2] font-medium"
             onClick={() => setShowImage(false)}
           >
-            <h1 className="text-[14px] flex gap-3 text-center">
-              <ScrollText />
-              Billing
+            <h1 className="text-[14px] flex pr-2  text-center">
+              <ScrollText  className=" mr-4"/>
+              Invoice
             </h1>
           </NavLink>
           <NavLink

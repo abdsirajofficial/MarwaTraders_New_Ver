@@ -101,15 +101,16 @@ export const Report = () => {
     );
   }, [currentPage]);
 
-  const handlePageChange = (pageNumber) => {
-    setcurrentPage(pageNumber);
-    getReport(
-      `reports/?page=${pageNumber}&maxResult=9`,
-      setdata,
-      settotal,
-      settotalItem
-    );
-  };
+  // const handlePageChange = (pageNumber) => {
+  //   console.log(pageNumber)
+  //   setcurrentPage(pageNumber);
+  //   getReport(
+  //     `reports/?page=${pageNumber}&maxResult=9`,
+  //     setdata,
+  //     settotal,
+  //     settotalItem
+  //   );
+  // };
 
   const handleSearch = (text) => {
     setsearchByName(text);
@@ -214,13 +215,13 @@ export const Report = () => {
         <DownloadReports setdownloadReport={setdownloadReport} />
       )}
 
-      <div className="fixed bottom-3 right-0">
+      {/* <div className="fixed bottom-3 right-0">
         <Pagination
           currentPage={currentPage}
           total={total}
           handlePageChange={handlePageChange}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

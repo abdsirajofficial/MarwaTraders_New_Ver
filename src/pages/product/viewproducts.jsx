@@ -18,6 +18,7 @@ export const ViewProducts = ({
   const [searchProduct, setsearchProduct] = useState("");
   const [currentPage, setcurrentPage] = useState(1);
   const [delIsLoading, setdelIsLoading] = useState([]);
+  const [type, settype] = useState("AQUA")
 
   useEffect(() => {
     if (data) {
@@ -26,8 +27,8 @@ export const ViewProducts = ({
   }, [data]);
 
   useEffect(() => {
-    getApi(`product/getProducts?page=1&maxResult=9`, setdata, settotal);
-  }, []);
+    getApi(`product/getProducts?page=1&maxResult=9&type=${type}`, setdata, settotal);
+  }, [type]);
 
   const editProduct = (index) => {
     seteditProductIndex(index);
@@ -69,14 +70,14 @@ export const ViewProducts = ({
   //#region handle pagination change
   const handlePageChange = (pageNumber) => {
     setcurrentPage(pageNumber);
-    getApi(`product/getProducts?maxResult=9&page=${pageNumber}`,setdata,settotal);
+    getApi(`product/getProducts?maxResult=9&page=${pageNumber}&type=${type}`,setdata,settotal);
   };
 
   return (
     <div className="pt-5 px-5 ">
 
-      <div className=" flex justify-between">
-        <button
+      <div className=" w-full h-full flex justify-between">
+        {/* <button
           className="flex items-center cursor-pointer p-2 border-2 gap-2 rounded-md bg-white border-gray-300 hover:border-blue-500 text-[14px]"
           onClick={() => navigate("/")}
         >
@@ -84,7 +85,19 @@ export const ViewProducts = ({
             <ArrowBigLeftDash />
           </p>
           Back
-        </button>
+        </button> */}
+        <div className=" flex space-x-3">
+          <button className={` text-[14px] rounded-lg px-3 font-medium text-white ${type==="AQUA"? "bg-slate-500 border-2 shadow-2xl border-blue-500 ":"bg-red-400"} transform transition-transform duration-300 ease-in-out hover:scale-110`}  onClick={()=>settype("AQUA")}>
+            D.AQUA 
+          </button>
+          <button className={` text-[14px] rounded-lg px-3 font-medium text-white ${type==="RR"? "bg-slate-500 border-2 shadow-2xl border-blue-500 ":"bg-green-400"} transform transition-transform duration-300 ease-in-out hover:scale-110`} onClick={()=>settype("RR")}>
+            RR 
+          </button>
+          <button className={` text-[14px] rounded-lg px-3 font-medium text-white ${type==="LEOPLAST"? "bg-slate-500 border-2 shadow-2xl border-blue-500  ":"bg-yellow-400"} transform transition-transform duration-300 ease-in-out hover:scale-110`} onClick={()=>settype("LEOPLAST")}>
+            LEOPLAST
+          </button>
+        </div>
+       
         <div className="flex items-center gap-x-4">
           <input
             type="search"
@@ -152,11 +165,12 @@ export const ViewProducts = ({
       </div>
 
       <div className=" fixed bottom-3 right-0">
-        <Pagination
+        {data.length> 0 && (<Pagination
           currentPage={currentPage}
           total={total}
           handlePageChange={handlePageChange}
-        />
+        />)}
+        
       </div>
     </div>
   );
