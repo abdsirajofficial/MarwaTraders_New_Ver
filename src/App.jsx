@@ -7,7 +7,8 @@ import { Product } from './pages/product/product'
 import { Login } from './pages/Login/login'
 import { BillForm } from './pages/billing/billForm'
 import { BillingHome } from './pages/billing/billingHome'
-import { CashBill } from './pages/billing/cashBill'
+import { Dashboard } from './pages/dashboard/dashboard'
+// import { CashBill } from './pages/billing/cashBill'
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage/>}>
-            {/* <Route path='/cashbill' element={<CashBill/>}/> */}
+            <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/billingHome' element={<BillingHome/>}/>
             <Route path='/product' element={<Product/>}/>
             <Route path='/report' element={<Report/>}/>

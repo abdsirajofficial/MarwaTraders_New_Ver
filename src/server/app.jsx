@@ -58,10 +58,11 @@ export const deleteApi = async (path)=>{
   };
 
 //product get api for billing
-export const getProductBySearch = async (path,setdata) => {
+export const getProductBySearch = async (path,setdata, settotal) => {
   try {
     const res = await axios.get(api_url + path);
-    setdata(res.data.success);
+    setdata(res.data.success); 
+    settotal(res.data.totalProductsCount); 
     return res;
   } 
   catch (err) {
@@ -90,6 +91,18 @@ export const getReport = async (path,setdata,settotal, settotalItem) => {
   } 
   catch (err) {
     toast.error(err.response.data.error.message,{ duration : 1500});
+  }
+};
+
+//getreport data for dashboard
+export const getdasboardReportdata = async (path, setTodayRep) => {
+  try {
+    const res = await axios.get(api_url + path);
+    // setData(res.data.success);
+    setTodayRep(res.data.totalReportsCount);
+    return res;
+  } catch (err) {
+    toast.error(err.response?.data?.error?.message || "Error fetching reports", { duration: 1500 });
   }
 };
 

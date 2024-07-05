@@ -36,8 +36,9 @@ export const Login = () => {
           
           if (decoded) {
             localStorage.setItem("loginToken", token);
+            localStorage.setItem("username", username);
             toast.success('Login successfull!', { duration : 1500 });
-              navigate("/");
+              navigate("/billingHome");
               setShowLoading(false)
             }
           } else {
@@ -85,6 +86,11 @@ export const Login = () => {
               id="password"
               defaultValue={password}
               onChange={(e) => setpassword(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSubmit();
+                }
+              }}
             />
             <div
               className="absolute  right-4 top-1/2 cursor-pointer text-xl"

@@ -27,6 +27,8 @@ export const Billing = ({
   const [total, settotal] = useState();
   const [searchProduct, setsearchProduct] = useState();
 
+  const username = localStorage.getItem('username');
+
   const qtyRef = useRef(null); // Add this ref for quantity input
   const discRef = useRef(null); //
 
@@ -207,25 +209,33 @@ export const Billing = ({
       </div>
 
       {/* search data fucntion */}
-      <div className=" absolute top-[5rem] w-full left-0">
-        {data.map((item, index) => {
-          return (
-            <div
-              className="w-full h-auto bg-red-100 shadow-sm grid grid-cols-8 grid-rows-1 text-center rounded py-3  text-[14px] hover:bg-blue-200 cursor-pointer "
-              key={index}
-              onClick={() => handleSelected(item.id)}
-            >
-              <p className=" flex justify-center items-center col-span-2">{item.productName}</p>
-              <p className=" flex justify-center items-center">{item.category}</p>
-              <p className=" flex justify-center items-center">{item.quantity}</p>
-              <p className=" flex justify-center items-center">{item.mrp}</p>
-              <p className=" flex justify-center items-center">{item.discount}%</p>
-              <p className=" flex justify-center items-center">{item.addMargin}%</p>
-              <p className=" flex justify-center items-center">{item.netRate.toFixed(2)}</p>
-            </div>
-          );
-        })}
-      </div>
+      <div className="absolute top-[5rem] w-full left-0">
+      {data.map((item, index) => (
+        <div
+          key={index}
+          className={`w-full h-auto bg-red-100 shadow-sm grid ${(username === "sithikali1977@gmail.com" || username === "siraj1977@gmail.com")  ? "grid-cols-10" : "grid-cols-3"} grid-rows-1 text-center rounded py-3 text-[14px] hover:bg-blue-200 cursor-pointer`}
+          onClick={() => handleSelected(item.id)}
+        >
+          <p className={`flex justify-center items-center ${(username === "sithikali1977@gmail.com" || username === "siraj1977@gmail.com")  ? "col-span-2" : ""}`}>{item.productName}</p>
+          {(username === "sithikali1977@gmail.com" || username === "siraj1977@gmail.com")  && (
+            <>
+              <p className="flex justify-center items-center">{item.category}</p>
+              <p className="flex justify-center items-center">{item.quantity}</p>
+              <p className="flex justify-center items-center">{item.mrp}</p>
+              <p className="flex justify-center items-center">{item.discount}%</p>
+              <p className="flex justify-center items-center">{item.addMargin}%</p>
+              <p className="flex justify-center items-center">{item.netRate.toFixed(2)}</p>
+            </>
+          )}
+          {(username !== "sithikali1977@gmail.com" || username !== "siraj1977@gmail.com") ? (
+            <>
+              <p className="flex justify-center items-center">{item.quantity}</p>
+              <p className="flex justify-center items-center">{item.mrp}</p>
+            </>
+          ):("")}
+        </div>
+      ))}
+    </div>
 
       {/* enter the value for input box */}
       {selectforvlaueEnter.length > 0 && (
@@ -235,12 +245,12 @@ export const Billing = ({
             const formattedTotal = isNaN(total) ? "0.00" : total; // Format total to 2 decimal places or '0.00' if not a number
             return (
               <div
-                className="w-full h-auto bg-blue-200 text-center shadow-sm grid grid-cols-12 grid-rows-1 rounded py-3 text-[14px]"
                 key={index}
+                className={`w-full h-auto bg-blue-200 text-center shadow-sm grid ${(username === "sithikali1977@gmail.com" || username === "siraj1977@gmail.com")  ? "grid-cols-12" : " grid-cols-9"} grid-rows-1 rounded py-3 text-[14px]`}
               >
-                <p className=" flex justify-center items-center col-span-2">{item.productName}</p>
-                <p className=" flex justify-center items-center">{item.category}</p>
-                <div className=" flex justify-center items-center">
+                <p className="flex justify-center items-center col-span-2">{item.productName}</p>
+                <p className="flex justify-center items-center">{item.category}</p>
+                <div className="flex justify-center items-center">
                   <input
                     type="text"
                     value={qty}
@@ -258,11 +268,14 @@ export const Billing = ({
                     }}
                   />
                 </div>
-                <p className=" flex justify-center items-center">{item.mrp}</p>
-                <p className=" flex justify-center items-center text-red-600 font-bold">{item.discount}%</p>
-                <p className=" flex justify-center items-center text-blue-800 font-bold">{(item.mrp * (1 - item.discount/100)).toFixed(2)}</p>
-                {/* <p className=" flex justify-center items-center">{item.addMargin}%</p> */}
-                <p className=" flex justify-center text-green-600 font-bold items-center">{item.netRate}</p>
+                <p className="flex justify-center items-center">{item.mrp}</p>
+                {(username === "sithikali1977@gmail.com" || username === "siraj1977@gmail.com") && (
+                  <>
+                    <p className="flex justify-center items-center text-red-600 font-bold">{item.discount}%</p>
+                    <p className="flex justify-center items-center text-green-800 font-bold">{(item.mrp * (1 - item.discount / 100)).toFixed(2)}</p>
+                  </>
+                )}
+                <p className={`flex justify-center items-center ${(username === "sithikali1977@gmail.com" || username === "siraj1977@gmail.com") ? "flex" : "hidden"}`}>{item.netRate}</p>
                 <div className="flex justify-center items-center">
                   <input
                     type="text"
@@ -282,8 +295,8 @@ export const Billing = ({
                   />
                   <p>%</p>
                 </div>
-                <p className=" flex justify-center items-center text-red-600 font-bold">{formattedTotal}</p>
-                <p className=" flex justify-center items-center text-green-600 font-bold">{(formattedTotal * (1 + gst)).toFixed(2)}</p>
+                <p className="flex justify-center items-center text-red-600 font-bold">{formattedTotal}</p>
+                <p className="flex justify-center items-center text-green-600 font-bold">{(formattedTotal * (1 + gst)).toFixed(2)}</p>
                 <p className="flex justify-center items-center text-red-600 cursor-pointer">
                   <XCircle onClick={() => setselectforvlaueEnter([])} />
                 </p>
