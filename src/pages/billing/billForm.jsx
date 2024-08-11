@@ -113,7 +113,7 @@ export const BillForm = ({
             <p className=" font-bold text-[20px] tracking-wider">
               MARWA TRADERS
             </p>
-            <p className="   tracking-widest">No.44/A, MAMBALAPATTU ROAD,</p>
+            <p className="   tracking-widest">No.11A, MAMBALAPATTU ROAD,</p>
             <p className="   tracking-widest">VILLUPURAM - 605602</p>
             <p className="   tracking-widest">PHONE : 9043732149,6381364796</p>
             <p className=" tracking-widest">GSTIN: 33OLDPS1329N1ZJ</p>
@@ -131,8 +131,8 @@ export const BillForm = ({
           </div>
           <div className=" w-1/2 border-l-2 text-[14px]">
             <div className=" flex space-x-10 border-b-2 border-r-2 p-2 font-medium">
-              <p>TAX INVOICE</p>
-              <p>CASH BILL</p>
+              <p>TAX INVOICE BILL</p>
+              {/* <p>CASH BILL</p> */}
             </div>
             <div className=" grid grid-cols-2 p-2 border-r-2">
               <p>INVOICE NO : </p>
@@ -455,6 +455,24 @@ export const BillForm = ({
                     )}
               </td>
             </tr>
+            {/* {state.paymentMode === "CREDIT" && (
+              <tr className="">
+                <td className="p-1 text-right border-r-2" colSpan="2">
+                  Received Payment Amount
+                </td>
+                <td className="p-1 text-center pr-8" colSpan="">
+                  <input
+                    type="number"
+                    value={state.receivedAmount || ""}
+                    onChange={(e) =>
+                      setState({ ...state, receivedAmount: e.target.value })
+                    }
+                    className="w-full rounded-lg border-2 border-r-2 p-2"
+                    placeholder="Enter received amount"
+                  />
+                </td>
+              </tr>
+            )} */}
             <tr className=" border-b-2">
               <td
                 className="p-3 text-start border-r-2 space-y-10 text-[13px] font-medium"

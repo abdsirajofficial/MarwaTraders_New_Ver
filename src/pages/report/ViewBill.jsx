@@ -35,7 +35,7 @@ class ComponentToPrint extends React.Component {
           <div className="text-center">
             <p className="font-bold text-lg tracking-wider">MARWA TRADERS</p>
             <p className="tracking-widest text-sm">
-              No.44/A, MAMBALAPATTU ROAD,
+              No.11A, MAMBALAPATTU ROAD,
             </p>
             <p className="tracking-widest text-sm">VILLUPURAM - 605602</p>
             <p className="tracking-widest text-sm">

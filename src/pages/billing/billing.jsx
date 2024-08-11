@@ -381,17 +381,17 @@ export const Billing = ({
         </button>
         <button
           className={`flex justify-center items-center cursor-pointer px-1 border-2 gap-2 rounded-md ${
-            state.paymentMode == "CARD"
+            state.paymentMode == "CREDIT"
               ? "border-2 bg-red-100 border-blue-500 rounded-lg shadow-lg"
               : "bg-white border-gray-300 hover:bg-gray-200"
           }`}
           type="submit"
-          onClick={() => handlePaymentMode("CARD")}
+          onClick={() => handlePaymentMode("CREDIT")}
         >
           <p>
             <CreditCard />
           </p>
-          Card
+          Credit
         </button>
         <button
           className="flex justify-center items-center cursor-pointer px-1 border-2 space-x-2 rounded-md bg-blue-100 border-blue-200 shadow-lg"
